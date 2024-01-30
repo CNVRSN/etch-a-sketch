@@ -1,3 +1,5 @@
+let isDrawing = false;
+
 // populate the canvas with the default value
 document.addEventListener("DOMContentLoaded", () => {
     populateCanvas(25);
@@ -32,10 +34,17 @@ function populateCanvas(gridNum) {
         // and place it in the canvas
         gridBox.style.width = `${canvasSize / gridNum}px`;
         gridBox.style.height = `${canvasSize / gridNum}px`;
-        
-        // set the grid to change color on mouseover
-        gridBox.onmouseover = (e) => color(gridBox);
         canvas.appendChild(gridBox);
+
+        // set the grid to draw on mouseover, using the mousedown event listener function
+        gridBox.addEventListener("mouseover", (e) => draw(e));
+        gridBox.addEventListener("mouseup", (e) => draw(e));
+        gridBox.addEventListener("mousedown", (e) => draw(e));
+
+        // this fixes a bug
+        gridBox.addEventListener("dragstart", (e) => {e.preventDefault()});
+
+        showOrHideGrid(gridBox);
     }
 }
 
@@ -50,7 +59,23 @@ function getUserInput() {
         }
 }
 
-// change color
-function color(x) {
-    x.style.backgroundColor = "white"
+// draw
+function draw(e) {
+    if (e.type === "mousedown") {
+        isDrawing = true;
+        e.target.style.backgroundColor = "black";
+    }
+    else if (e.type === "mouseover" && isDrawing) {
+        e.target.style.backgroundColor = "black";
+    }
+    else isDrawing = false;
 }
+
+// show or hide grid
+function showOrHideGrid(grid) {
+    let gridToggle = document.querySelector("#grid-toggle");
+    gridToggle.addEventListener("click", (e) => {
+    grid.style.border = "1px solid #fafafa";
+    }); 
+}
+

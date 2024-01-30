@@ -1,26 +1,17 @@
 @import 
 url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap');
 
-
 body {
-    margin: 0;
-  }
+  background: linear-gradient(89deg, rgb(253, 220, 155) 26.2%, rgb(255, 215, 165) 48.5%);
+}
 
 #canvas {
     display: flex;
     flex-wrap: wrap;
-    /* width: 960px;
-    height: 960px; */
   }
   
   .grid-box {
-    /* width: 60px;
-    height: 60px; */
-    background-color: #000;
-    border: 1px solid #ccc;
+    background-color: #fff;
+    border: none;
     box-sizing: border-box;
-  }
-
-  .box:hover {
-    background-color: #633edf;
   }
