@@ -34,6 +34,7 @@ function populateCanvas(gridNum) {
         // and place it in the canvas
         gridBox.style.width = `${canvasSize / gridNum}px`;
         gridBox.style.height = `${canvasSize / gridNum}px`;
+        gridBox.style.border = "1px solid #efefef";
         canvas.appendChild(gridBox);
 
         // set the grid to draw on mouseover, using the mousedown event listener function
@@ -44,7 +45,8 @@ function populateCanvas(gridNum) {
         // this fixes a bug
         gridBox.addEventListener("dragstart", (e) => {e.preventDefault()});
 
-        showOrHideGrid(gridBox);
+        showGrid(gridBox);
+        hideGrid(gridBox);
     }
 }
 
@@ -72,10 +74,21 @@ function draw(e) {
 }
 
 // show or hide grid
-function showOrHideGrid(grid) {
-    let gridToggle = document.querySelector("#grid-toggle");
-    gridToggle.addEventListener("click", (e) => {
-    grid.style.border = "1px solid #fafafa";
+function showGrid(grid) {
+
+    let gridOn = document.querySelector("#grid-on");
+
+    gridOn.addEventListener("click", (e) => {
+        grid.style.border = "1px solid #fafafa";
     }); 
+
 }
 
+function hideGrid(grid) {
+    
+    let gridOff = document.querySelector("#grid-off");
+
+    gridOff.addEventListener("click", (e) => {
+        grid.style.border = "none";
+    }); 
+}
